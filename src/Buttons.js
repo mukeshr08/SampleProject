@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css'
-const buttons = ({userfunction}) => {
+const buttons = ({userFunction,postFunction,contentFunction}) => {
   return (
     <div className='buttongrid'>
-        <button onClick={userfunction}>Users</button>
-        <button>Posts</button>
-        <button>Content</button>
+        <button onClick={userFunction}>Users</button>
+        <button onClick={postFunction}>Posts</button>
+        <button onClick={contentFunction}>Comments</button>
 
     </div>
   )

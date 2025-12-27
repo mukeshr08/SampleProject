@@ -5,7 +5,8 @@ const Content = ({userdata}) => {
   return (
     
     <section>
-        <p>hi</p>
+        
+        <p>{JSON.stringify(userdata)}</p>
     </section>
   )
 }
