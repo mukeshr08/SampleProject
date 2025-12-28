@@ -1,39 +1,35 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import  Buttons from  './Buttons';
 import Content from './Content';
 function App() {
-  const[userdata,setuserdata]=useState()
-  const userFunction=async()=>{
-    const URL="https://jsonplaceholder.typicode.com/users"
-  const response=await fetch (URL)
-  const data=await response.json()
-  console.log(data)
-  setuserdata(data)
+  const[userdata,setuserdata]=useState([])
+  const locationFunction=(event)=>{
+    const reqType=event.target.innerText.toLowerCase()
+    setreqType(reqType)
   }
-  const postFunction=async()=>{
-    const URL="https://jsonplaceholder.typicode.com/posts"
-    const response =await fetch(URL)
-    const data = await response.json()
-    console.log(data)
-    setuserdata(data)
-  }
-  const contentFunction=async()=>{
-    const URL="https://jsonplaceholder.typicode.com/comments"
-    const response=await fetch(URL)
+  const [reqType,setreqType]=useState("users")
+  const URL="https://jsonplaceholder.typicode.com"
+  useEffect(()=>{
+    const fetchData=async()=>{
+    try{
+    const response=await fetch(`${URL}/${reqType}`)
+    if(!response.ok) throw Error("data not received")
     const data=await response.json()
-    console.log(data)
     setuserdata(data)
-  }
+    }catch(err){
+      console.log(err.message)
+    }}
+    fetchData()
+
+  },[reqType])
   
   return (
     <div className="App">
       <header className="App-header">
         <Buttons
-        userFunction={userFunction}
-        postFunction={postFunction}
-        contentFunction={contentFunction}
+        locationFunction={locationFunction}
         />
         <Content
         userdata={userdata}

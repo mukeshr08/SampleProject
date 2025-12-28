@@ -4,10 +4,16 @@ const Content = ({userdata}) => {
     console.log(userdata)
   return (
     
-    <section>
-        
-        <p>{JSON.stringify(userdata)}</p>
-    </section>
+    <ul>
+        {userdata.map((item)=>(
+        <li key={item.id}>
+           <p>{JSON.stringify(item)}</p>
+        </li>
+      ))}
+    </ul>
+
+    
+    
   )
 }
 
